@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+<div id="notes">
+    <div class="header"></div>
+    <div class="list" @dblclick.ctrl="addNote" @mousemove="mv" @mouseup="mu">
+        <div v-for="(n,i) in note"
+             :class="`note ${moveInfo.index==i?'active':''}`"
+             :style="{left:n.left+'px',top:n.top+'px'}"
+             :key="n.id">
+            <div :class="`title ${n.theme}`" @mousedown="md(i,$event)">
+                {{n.title}}
+                <!--<div class="close" @click.stop="aa">X</div>-->
+            </div>
+            <div class="content">
+                <textarea name="" id="" @blur="save" v-model="n.content"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
